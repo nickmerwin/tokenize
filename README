@@ -1,0 +1,8 @@
+LemurTokenizer
+  Quick Dirty Token generation
+  by Nick Merwin 02.06.2009
+
+Usage: 
+class Foo < ActiveRecord::Base
+  tokenize :api_key, :size => 32
+end
