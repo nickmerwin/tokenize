@@ -6,6 +6,13 @@
 # class Foo < ActiveRecord::Base
 #   tokenize :api_key, :size => 32
 # end
+#
+# Option defaults:
+# column - :token
+# size - 32
+# when - :before_create
+# type - :hex (:base64)
+# url_safe - true
 
 module LemurTokenize
   class << self
@@ -16,10 +23,7 @@ module LemurTokenize
   
   module ClassMethods
     
-    # defaults:
-    # column - :token
-    # size - 32
-    # when - :before_create
+
     def tokenize(column=:token, opts={})
       include InstanceMethods
       
@@ -38,7 +42,16 @@ module LemurTokenize
 
   module InstanceMethods
     def set_token
-      send "#{self.class.tokenize_opts[:column]}=", ActiveSupport::SecureRandom.hex(self.class.tokenize_opts[:size] || 32)
+      opts = self.class.tokenize_opts
+      
+      while true
+        proposed_token = ActiveSupport::SecureRandom.send(opts[:type],32)
+        proposed_token.gsub!(/\W/,'') unless opts[:url_safe] == false
+        proposed_token = proposed_token.to_s[0..(opts[:size] || 32)]
+        
+        break unless self.class.exists?(opts[:column] => proposed_token)
+      end
+      send "#{opts[:column]}=", proposed_token
     end
   end
 end
