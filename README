@@ -5,6 +5,7 @@ LemurTokenizer
 Usage: 
 class Foo < ActiveRecord::Base
   tokenize :api_key, :size => 32, :type => :base64
+  tokenize :public_key, :size => 64, :type => :hex, :url_safe => false
 end
 
 Options
