@@ -1,39 +1,11 @@
-= tokenize
+= Tokenize
 
 * http://github.com/yickster/tokenize
 
 == DESCRIPTION:
 
-LemurTokenizer
   Quick Dirty Token generation
-  by Nick Merwin 02.06.2009
-
-Options
-
-* column 
-  
-  The column that will store the token.
-  default - :token
-  
-* size
-  
-  The length of the token string
-  default - 32
-  
-* when
-  
-  Callback
-  default - :before_create
-  
-* type
-
-  The type of random generator - :hex or :base64
-  default - :hex
-  
-* url_safe
-
-  Parses out \W characters (for URL shorteners,etc)
-  default - true
+  by Nick Merwin (lemurheavy.com) 11.29.2009
 
 == SYNOPSIS:
 
@@ -41,7 +13,6 @@ Options
     tokenize :api_key, :size => 32, :type => :base64
     tokenize :public_key, :size => 64, :type => :hex, :url_safe => false
   end
-  
 
 == REQUIREMENTS:
 
@@ -55,7 +26,7 @@ sudo gem i tokenize
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME full name
+Copyright (c) 2009 Nick Merwin
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

@@ -6,16 +6,38 @@ module LemurTokenize
   VERSION = "1.0"
   
   # Usage: 
-  # class Foo < ActiveRecord::Base
-  #   tokenize :api_key, :size => 32
-  #   tokenize :public_token, :size => 5, :type => :base64
-  # end
+  #   class Foo < ActiveRecord::Base
+  #     tokenize :api_key, :size => 32
+  #     tokenize :public_token, :size => 5, :type => :base64
+  #   end
   #
-  # Option defaults:
-  # column - :token
-  # size - 32
-  # type - :hex (:base64)
-  # url_safe - true
+  # Options:
+  # 
+  # * column 
+  # 
+  #   The column that will store the token.
+  #   default - :token
+  # 
+  # * size
+  # 
+  #   The length of the token string
+  #   default - 32
+  # 
+  # * when
+  # 
+  #   Callback
+  #   default - :before_create
+  # 
+  # * type
+  # 
+  #   The type of random generator - :hex or :base64
+  #   default - :hex
+  # 
+  # * url_safe
+  # 
+  #   Parses out \W characters (for URL shorteners,etc)
+  #   default - true
+  #   
   def tokenize(column=:token, opts={})
     generate_method = "generate_#{column}".to_sym
     define_method generate_method do
