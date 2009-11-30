@@ -1,0 +1,8 @@
+History.txt
+Manifest.txt
+README.rdoc
+Rakefile
+init.rb
+lib/tokenize.rb
+test/test_helper.rb
+test/test_tokenize.rb
