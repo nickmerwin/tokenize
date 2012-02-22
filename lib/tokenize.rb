@@ -43,7 +43,7 @@ module LemurTokenize
     define_method generate_method do
       opts = {:column => column, :type => :hex}.merge(opts)
       while true
-        proposed_token = ActiveSupport::SecureRandom.send(opts[:type],32)
+        proposed_token = SecureRandom.send(opts[:type],32)
         proposed_token.gsub!(/\W/,'') unless opts[:url_safe] == false
         #TODO: fill in gaps left by url safety
         proposed_token = proposed_token.to_s[0..(opts[:size] || 32)]
